@@ -1,0 +1,32 @@
+{% load crispy_forms_tags %}
+{% comment %} Driving License Details {% endcomment %}
+<div class="row mb-2">
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.driving_license_number|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.driving_license_issue_date|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.driving_license_expiration_date|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.driving_license_origin|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.driving_license_penalty_points|as_crispy_field }}
+  </div>
+  </div>
+  <div class="row mb-2">
+    <div class="col-sm-12 col-lg-4 mb-2">
+      {{ form.driving_license_convictions|as_crispy_field }}
+    </div>
+    <div class="col-sm-12 col-lg-4 mb-2">
+      {{ form.driving_license_medical_conditions|as_crispy_field }}
+    </div>
+    <div class="col-sm-12 col-lg-4 mb-2">
+      {{ form.driving_license_claims|as_crispy_field }}
+    </div>
+</div>
+
+    

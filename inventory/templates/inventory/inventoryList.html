@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block content %}
+<div class="container-fluid mt-5" id="container-employee-list">
+    <div class="row mb-2">
+        <h1>Devices</h1>
+    </div>
+  <div class="row pb-2">
+    <div class="col-auto">
+      <form action="{% url 'inventory:inventory_list' %}">
+
+        <div class="input-group">
+          <input type="radio" class="btn-check" value="phone" name="options-outlined" id="search-phone" autocomplete="off">
+          <label class="btn btn-outline-secondary" for="search-phone">Phone</label>
+
+          <input type="radio" class="btn-check" value="tablet" name="options-outlined" id="search-tablet" autocomplete="off">
+          <label class="btn btn-outline-secondary" for="search-tablet">Tablet</label>
+
+          <input type="radio" class="btn-check" value="sim" name="options-outlined" id="search-sim" autocomplete="off">
+          <label class="btn btn-outline-secondary" for="search-sim">SIM</label>
+
+          <input type="radio" class="btn-check" value="other_device" name="options-outlined" id="search-other" autocomplete="off">
+          <label class="btn btn-outline-secondary" for="search-other">Other</label>
+          <input
+            name="search_query"
+            id="search_query"
+            type="text"
+            class="form-control" 
+            placeholder="Search"
+            aria-label="Search"
+            aria-describedby="search-addon"
+          />
+          <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
+          <a class="btn btn-danger" href="{% url 'inventory:inventory_list' %}"><i class="fas fa-times-circle"></i></a>
+        </div>
+      </form>
+    </div>
+    <div class="col-auto ms-auto mt-3">
+      <a
+        href="{% url 'inventory:device_type_list' %}"
+        class="btn btn-sm btn-success"
+        ><i class="fas fa-plus-circle"></i> New device</a
+      >
+    </div>
+  </div> 
+  {% if devices|length == 0 %}
+  <hr>
+  <div class="text-center">
+    <strong><p>We didn't find any devices with this filter.</p></strong>
+    <p>Please, select a device type and search filter.</p>
+  </div>
+    
+  {% else %}
+  <table id="tableDevices" class="table table-hover table align-middle mt-2">
+    <thead>
+      <tr class="bg-light">
+        <th scope="col">Serial Number</th>
+        <th scope="col">Location</th>
+        <th scope="col">Assigned to</th>
+        <th class="text-center" scope="col">Status</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for device in devices %}
+      <tr>
+        <td class="small">{{device.serial_number}}</td>
+        <td class="small">{{device.location|upper}}</td>
+        <td class="small">{{device.assigned_to}}</td>
+
+        {% comment %} Badges for different status {% endcomment %}
+        {% include "../inventory/includes/deviceStatusBadge.html" %}
+        <td class="text-center">
+          <a
+            href="{% url 'inventory:edit_device' device_type=device_type id=device.id %}"
+            class="btn btn-sm btn-info"
+            target="_blank"
+            ><i class="fas fa-search-plus"></i> Details</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endif %}
+</div>
+{% endblock content %}

@@ -1,0 +1,69 @@
+{% load static %} 
+{% comment %} Navbar {% endcomment %} 
+{% if request.user.is_authenticated %}
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top" id="navbar">
+  <div class="container-fluid ps-4 pe-4">
+    <div class="container p-0 ms-0">
+      <a class="navbar-brand" href="{% url 'dashboard:dashboard' %}">
+        <img src="{% static 'images/SalesSenseLogo.png' %}" alt="SalesSense Logo" height="50">
+      </a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'dashboard:dashboard' %}"
+            ><i class="fas fa-th-list"></i> Dashboard</a
+          >
+        </li>
+
+        {% if user.is_manager == "Y" or user.is_superuser or user.department.department_name == "HR" or user.department.department_name == "Management" or user.department.department_name == "Accounts" %}
+          {% comment %} Employee Menu  {% endcomment %}
+          {% include "./employeeMenu.html" %}
+        {% comment %} Reports Menu  {% endcomment %}
+          {% include "./reportsMenu.html" %}
+        {% endif %}
+        {% if user.department.department_name == "Technology" %}
+        {% comment %} Api Menu  {% endcomment %}
+          {% include "./apiToolsMenu.html" %}
+        {% comment %} Inventory Menu  {% endcomment %}
+          {% include "./inventoryMenu.html" %}
+        {% endif %}
+        {% comment %} User Navigation {% endcomment %}
+        <li class="nav-item dropdown me-3">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-user-circle"></i> Hi, {{user}}
+          </a>
+          <ul
+            class="dropdown-menu text-center"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li>
+              <a class="dropdown-item text-secondary" href="{% url 'account_logout' %}"
+                ><i class="fas fa-sign-out-alt"></i> Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+{% endif %}

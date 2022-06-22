@@ -1,0 +1,99 @@
+{% extends "base.html" %}{% load static %}
+
+{% block content %}
+<div class="container mb-5">
+  <div class="text-center">
+    <img class="img-fluid w-50" src="{% static 'pinergyForms/assets/pinergyLogo.png' %}" alt="Pinergy Logo">
+  </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4">
+            <div class="card border-0">
+                <div class="card-body text-center">    
+                <h3 class="card-title">Daily B2B Sales Stats</h3>
+                <hr>              
+                    <canvas id="chartSalesB2B" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card border-0">
+                <div class="card-body text-center">    
+                <h3 class="card-title">Daily B2C Sales Stats</h3>
+                <hr>              
+                    <canvas id="chartSalesB2C" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card border-0">
+                <div class="card-body text-center">    
+                <h3 class="card-title">Daily Retention Stats</h3> 
+                <hr>             
+                    <canvas id="chartRetention" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-2 justify-content-start mb-5">
+        <h3>Overview</h3>
+        <hr>
+        <div class="col-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-green">                   
+                    <h5 class="card-title">Current Sales</h5>
+                    <h5 class="display-3">{{currentSalesB2B}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-blue">                   
+                    <h5 class="card-title">Target Sales</h5>
+                    <h5 class="display-3">{{targetSalesB2B}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-green">                   
+                    <h5 class="card-title">Current Sales</h5>
+                    <h5 class="display-3">{{currentSalesB2C}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-blue">                   
+                    <h5 class="card-title">Target Sales</h5>
+                    <h5 class="display-3">{{targetSalesB2C}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-green">                   
+                    <h5 class="card-title">Current Retention</h5>
+                    <h5 class="display-3">{{currentRetention}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-blue">                   
+                    <h5 class="card-title">Target Retention</h5>
+                    <h5 class="display-3">{{targetRetention}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% block extraScripts %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="{% static 'pinergyForms/js/displayCharts.js'%}"></script>
+{% endblock extraScripts %}
+{% endblock content %}

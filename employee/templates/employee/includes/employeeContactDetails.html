@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+{% comment %} Contact Details {% endcomment %}
+
+<div class="row mb-2">
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.personal_phone|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-4 mb-2">
+    {{ form.personal_email|as_crispy_field }}
+  </div>
+</div>
+<div class="row mb-2">
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.work_phone|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-4 mb-2">
+    {{ form.work_email|as_crispy_field }}
+  </div>
+</div>

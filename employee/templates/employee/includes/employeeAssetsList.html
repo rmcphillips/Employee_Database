@@ -1,0 +1,75 @@
+{% if phones %}
+    {% for phone in phones %}
+        <tr>
+        <td>Phone</td>
+        <td>{{phone.serial_number}}</td>
+        <td>{{phone.location|upper}}</td>
+        <td>{{phone.status|capfirst}}</td>
+        <td class="text-center">
+            <a
+                href="{% url 'inventory:edit_device' device_type='phone' id=phone.id %}"
+                class="btn btn-sm btn-info"
+                target="_blank"
+                ><i class="fas fa-search-plus"></i> Details</a
+            >
+        </td>
+        </tr>
+    {% endfor %}
+{% endif %}
+
+{% if tablets %}
+    {% for tablet in tablets %}
+        <tr>
+        <td>Tablet</td>
+        <td>{{tablet.serial_number}}</td>
+        <td>{{tablet.location|upper}}</td>
+        <td>{{tablet.status|capfirst}}</td>
+        <td class="text-center">
+            <a
+                href="{% url 'inventory:edit_device' device_type='tablet' id=tablet.id %}"
+                class="btn btn-sm btn-info"
+                target="_blank"
+                ><i class="fas fa-search-plus"></i> Details</a
+            >
+        </td>
+        </tr>
+    {% endfor %}
+{% endif %}
+
+{% if sims %}
+    {% for sim in sims %}
+        <tr>
+        <td>SIM</td>
+        <td>{{sim.serial_number}}</td>
+        <td>{{sim.location|upper}}</td>
+        <td>{{sim.status|capfirst}}</td>
+        <td class="text-center">
+            <a
+                href="{% url 'inventory:edit_device' device_type='sim' id=sim.id %}"
+                class="btn btn-sm btn-info"
+                target="_blank"
+                ><i class="fas fa-search-plus"></i> Details</a
+            >
+        </td>
+        </tr>
+    {% endfor %}
+{% endif %}
+
+{% if other_devices %}
+    {% for other_device in other_devices %}
+        <tr>
+        <td>{{other_device.other_device_type|capfirst}}</td>
+        <td>{{other_device.serial_number}}</td>
+        <td>{{other_device.location|upper}}</td>
+        <td>{{other_device.status|capfirst}}</td>
+        <td class="text-center">
+            <a
+                href="{% url 'inventory:edit_device' device_type='other_device' id=other_device.id %}"
+                class="btn btn-sm btn-info"
+                target="_blank"
+                ><i class="fas fa-search-plus"></i> Details</a
+            >
+        </td>
+        </tr>
+    {% endfor %}
+{% endif %}

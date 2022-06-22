@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% load static %}{% block content %} 
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h3>Devices Overview</h3>
+        <hr>
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-green">                   
+                    <h5 class="card-title">Active</h5>
+                    <div class="row justify-content-center">
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=phone&search_query=active" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-mobile-alt"></i> Phones <br> {{devices_count.active.phones}}
+                        </a>
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=tablet&search_query=active" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-tablet-alt"></i> Tablets <br> {{devices_count.active.tablets}}
+                        </a>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-blue">                   
+                    <h5 class="card-title">Inactive</h5>
+                    <div class="row justify-content-center">
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=phone&search_query=inactive" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-mobile-alt"></i> Phones <br> {{devices_count.inactive.phones}}
+                        </a>
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=tablet&search_query=inactive" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-tablet-alt"></i> Tablets <br> {{devices_count.inactive.tablets}}
+                        </a>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-orange">                   
+                    <h5 class="card-title">Repair</h5>
+                    <div class="row justify-content-center">
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=phone&search_query=repair" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-mobile-alt"></i> Phones <br> {{devices_count.repair.phones}}
+                        </a>
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=tablet&search_query=repair" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-tablet-alt"></i> Tablets <br> {{devices_count.repair.tablets}}
+                        </a>                   
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <div class="card-body text-end text-white bg-red">                   
+                    <h5 class="card-title">Out of Order</h5>
+                    <div class="row justify-content-center">
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=phone&search_query=out_of_order" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-mobile-alt"></i> Phones <br> {{devices_count.out_of_order.phones}}
+                        </a>
+                        <a href ="{% url 'inventory:inventory_list' %}?options-outlined=tablet&search_query=out_of_order" class="col btn btn-outline-light m-1">
+                            <i class="fas fa-tablet-alt"></i> Tablets <br> {{devices_count.out_of_order.tablets}}
+                        </a>                
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-5">
+        <h3>Actions</h3>
+        <hr>
+        <div class="col-3">
+            <a href="{% url 'inventory:inventory_list' %}">
+                <div class="card shadow-sm">
+                    <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                        <h5 class="card-title">View Devices</h5>
+                        <p><i class="fas fa-laptop-house display-3 mt-2"></i></p>                           
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-3">
+            <a href="{% url 'inventory:device_type_list' %}">
+                <div class="card shadow-sm">
+                    <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                        <h5 class="card-title">Add Device</h5>
+                        <p><i class="fas fa-laptop display-3 mt-2"></i></p>                           
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock content %}

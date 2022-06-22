@@ -1,0 +1,26 @@
+{% load crispy_forms_tags %}
+{% comment %} Documents Details {% endcomment %}
+
+<table id="tableDocuments" class="table table-hover table align-middle mt-2">
+    <thead>
+        <tr>
+        <th scope="col">File</th>
+        <th scope="col">Upload Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for doc in documents %}
+        <tr>
+            <td><a href="/media/{{doc.file_name}}" target="_blank">{{doc.file_name}}</a></td>
+            <td>{{doc.upload_date}}</td>
+        {% endfor %}
+        </tr>
+    </tbody>
+</table>
+<div class="text-end">
+    <a
+        href="{% url 'employee:employeeUploadDocument' pk=employee.pk %}"
+        class="btn btn-sm btn-warning"
+        ><i class="fas fa-edit"></i> Edit</a
+    >
+</div>

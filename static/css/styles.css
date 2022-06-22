@@ -1,0 +1,83 @@
+/* Color scheme */
+:root {
+  --green: #43aa8b;
+  --red: #f94144;
+  --gray: #6c757d;
+  --blue: #277da1;
+  --yellow: #f9c74f;
+  --orange: #f8961e;
+}
+
+/* Common color classes */
+.bg-green {
+  background-color: var(--green);
+}
+
+.bg-red {
+  background-color: var(--red);
+}
+
+.bg-gray {
+  background-color: var(--gray);
+}
+
+.bg-orange {
+  background-color: var(--orange);
+}
+
+.bg-blue {
+  background-color: var(--blue);
+}
+
+body {
+  padding-top: 70px;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* Space on the divs created by crispy-forms */
+form > div {
+  margin-top: 10px;
+}
+
+/* Fixes navbar breaking when using icons */
+.nav-link {
+  white-space: nowrap;
+}
+
+.table {
+  table-layout: fixed;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
+}
+
+th.hours,
+th.status {
+  width: 10%;
+}
+
+.bg-light-blue {
+  background-color: #e7f1ff !important;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1280px) {
+  #container-dashboard-cards {
+    width: 90%;
+  }
+  #container-employee-list {
+    width: 95%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #container-dashboard-cards {
+    width: 50%;
+  }
+  #container-employee-list {
+    width: 80%;
+  }
+}

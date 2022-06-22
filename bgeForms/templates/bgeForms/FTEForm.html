@@ -1,0 +1,54 @@
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1 class="pl-2">BGE FTE Form</h1>
+        <div class="text-start">
+            <a href="{% url 'bgeForms:form_list' %}"><i class="fas fa-angle-left"></i> Back to Forms List</a>
+            <hr>
+        </div>
+    </div>
+    <div class="container shadow-sm rounded p-4 bg-light">
+        <form action="{% url 'bgeForms:fte_form' %}" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-2 col-sm-12">
+                    {{form.head_count_date|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.fte|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.total_active_selling|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.total_sales|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.group_sales_gas|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.group_sales_electricity|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.induction_headcount|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.total_calls|as_crispy_field}}
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    {{form.decision_makers_met_dmm|as_crispy_field}}
+                </div>
+                <div class="col-lg-3 col-sm-12">
+                    {{form.decision_makers_presented_dmp|as_crispy_field}}
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="reset" class="btn btn-sm btn-secondary"><i class="fas fa-times-circle"></i> Clear</button>
+                <button type="submit" id="btnSubmit" class="btn btn-sm btn-success"><i class="fas fa-check-circle"></i> Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+    
+{% endblock content %}

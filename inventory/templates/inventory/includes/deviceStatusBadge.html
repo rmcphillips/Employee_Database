@@ -1,0 +1,20 @@
+{% comment %} Active {% endcomment %}
+{% if device.status == "active" %}
+<td class="text-center small"><span class="badge rounded-pill bg-success">Active</span></td>
+{% endif %}
+{% comment %} Inactive {% endcomment %}
+{% if device.status == "inactive" %}
+<td class="text-center small"><span class="badge rounded-pill bg-info">Inactive</span></td>
+{% endif %}
+{% comment %} Repair {% endcomment %}
+{% if device.status == "repair" %}
+<td class="text-center small"><span class="badge rounded-pill bg-warning">Repair</span></td>
+{% endif %}
+{% comment %} Out of Order {% endcomment %}
+{% if device.status == "out_of_order" %}
+<td class="text-center small"><span class="badge rounded-pill bg-danger">Out of Order</span></td>
+{% endif %}
+{% comment %} No Status Set {% endcomment %}
+{% if device.status == None %}
+<td class="text-center small"><span class="badge rounded-pill bg-secondary">No Status</span></td>
+{% endif %}

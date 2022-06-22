@@ -1,0 +1,118 @@
+{% load crispy_forms_tags %}
+{% comment %} Job Details {% endcomment %}
+<div class="accordion m-2" id="accordionJobDetails">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingJobDetails">
+        {% if isEditable == "true" %}
+        <button
+          class="accordion-button"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseJobDetails"
+          aria-expanded="true"
+          aria-controls="collapseJobDetails"
+        >
+          Job Details
+        </button>
+        {% else %}
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#collapseJobDetails"
+          aria-expanded="true"
+          aria-controls="collapseJobDetails"
+        >
+          Job Details
+        </button>
+        {% endif %}
+      </h2>
+      {% if isEditable == "true" %}
+      <div
+        id="collapseJobDetails"
+        class="accordion-collapse collapse show"
+        aria-labelledby="headingJobDetails"
+        data-bs-parent="#accordionJobDetails"
+      >
+      {% else %}
+      <div
+        id="collapseJobDetails"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingJobDetails"
+        data-bs-parent="#accordionJobDetails"
+      >
+      {% endif %}
+        <div class="accordion-body">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+              
+              {% if request.path == "/employee/create/" %}
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="job-info-tab" data-bs-toggle="tab" data-bs-target="#job-info" 
+                type="button" role="tab" aria-controls="job-info" aria-selected="true">Job Info</button>
+              </li>
+              {% else %}
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="job-info-tab" data-bs-toggle="tab" data-bs-target="#job-info" 
+                type="button" role="tab" aria-controls="job-info" aria-selected="true">Job Info</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="job-history-tab" data-bs-toggle="tab" data-bs-target="#job-history" 
+                type="button" role="tab" aria-controls="job-history" aria-selected="false">Job History</button>
+              </li>
+
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="holidays-details-tab" data-bs-toggle="tab" data-bs-target="#holidays-details" 
+                type="button" role="tab" aria-controls="holidays-details" aria-selected="false">Holidays Details</button>
+              </li>
+
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="leave-details-tab" data-bs-toggle="tab" data-bs-target="#leave-details" 
+                type="button" role="tab" aria-controls="leave-details" aria-selected="false">Leave Details</button>
+              </li>
+              {% endif %}
+          </ul>
+        {% if request.path == "/employee/create/" %}
+          <div class="tab-content" id="myTabContent">
+          {% comment %} Job Info {% endcomment %}
+          <div class="tab-pane fade show active mt-2 p-2" id="job-info" role="tabpanel" aria-labelledby="job-info-tab">
+            {% if isEditable == "true" %}
+            <fieldset>
+            {% else %}
+            <fieldset disabled>
+            {% endif %}
+              {% include "../includes/jobInfo.html" %}
+            </fieldset>
+          </div>
+        </div>
+        {% else %}
+        <div class="tab-content" id="myTabContent">
+          {% comment %} Job Info {% endcomment %}
+          <div class="tab-pane fade show active mt-2 p-2" id="job-info" role="tabpanel" aria-labelledby="job-info-tab">
+            {% if isEditable == "true" %}
+            <fieldset>
+            {% else %}
+            <fieldset disabled>
+            {% endif %}
+              {% include "../includes/jobInfo.html" %}
+            </fieldset>
+          </div>
+          {% comment %} Job History {% endcomment %}
+          <div class="tab-pane fade mt-2 p-2" id="job-history" role="tabpanel" aria-labelledby="job-history-tab">
+              {% include "../includes/employeeJobHistoryDetails.html" %}
+          </div>
+
+          {% comment %} Holidays Details {% endcomment %}
+          <div class="tab-pane fade mt-2 p-2" id="holidays-details" role="tabpanel" aria-labelledby="holidays-details-tab">
+              {% include "../includes/employeeHolidaysDetails.html" %}
+          </div>
+
+          {% comment %} Leave Details {% endcomment %}
+          <div class="tab-pane fade mt-2 p-2" id="leave-details" role="tabpanel" aria-labelledby="leave-details-tab">
+              {% include "../includes/employeeLeaveDetails.html" with isEditable="false" %}
+          </div> 
+        </div>
+        {% endif %}
+      </div>
+    </div>  
+  </div>
+</div>

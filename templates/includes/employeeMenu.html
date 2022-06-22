@@ -1,0 +1,43 @@
+{% comment %} Dropdown menu for navbar {% endcomment %}
+<li class="nav-item dropdown">
+    <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+    >
+        <i class="fas fa-users"></i> Employees
+    </a>
+    {% if user.is_superuser or request.user.department.department_name == "HR" or request.user.department.department_name == "Management" or request.user.department.department_name == "Accounts" %}
+    <ul
+        class="dropdown-menu text-center"
+        aria-labelledby="navbarDropdownMenuLink"
+    >
+        <li>
+            <a class="dropdown-item text-secondary" href="{% url 'employee:employeeList' %}"
+                ><i class="fas fa-users"></i> View Employees</a
+            >
+        </li>
+        {% if  user.is_superuser or request.user.department.department_name == "HR" or request.user.department.department_name == "Management" %}
+        <li>
+            <a class="dropdown-item text-secondary" href="{% url 'userRoles:managerList' %}"
+                ><i class="fas fa-user-tie"></i> View System Users</a
+            >
+        </li>
+        {% endif %}
+    </ul>
+    {% else %}
+        <ul
+        class="dropdown-menu text-center"
+        aria-labelledby="navbarDropdownMenuLink"
+    >
+        <li>
+            <a class="dropdown-item text-secondary" href="{% url 'employee:employeeList' %}"
+                ><i class="fas fa-users"></i> View Team Members</a
+            >
+        </li>
+    </ul>
+    {% endif %}
+</li>

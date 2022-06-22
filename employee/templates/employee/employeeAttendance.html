@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+<div class="container mt-5 mb-5">
+  <h1 class="ms-2">{{employee}}'s Attendance</h1>
+    <div class="text-start ms-2">
+        <a href="{% url 'employee:employeeDetail' pk=employee.id %}"><i class="fas fa-angle-left"></i> Back to Employee</a>
+    </div>
+    <form method="post">
+        {% csrf_token %}
+
+        {% comment %} Attendance Details {% endcomment %}
+        {% include "../employee/includes/employeeAttendanceForm.html" with isEditable="true"%}
+        
+        <div class="text-end mt-3">
+            <button type="reset" class="btn btn-sm btn-secondary">Clear</button>
+            <button type="submit" class="btn btn-sm btn-success">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

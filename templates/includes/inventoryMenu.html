@@ -1,0 +1,24 @@
+{% comment %} Inventory Navigation  {% endcomment %}
+
+    <li class="nav-item dropdown">
+    <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+    >
+        <i class="fas fa-warehouse"></i> Inventory
+    </a>
+        <ul
+            class="dropdown-menu text-center"
+            aria-labelledby="navbarDropdownMenuLink"
+        >
+            <li>
+            <a class="dropdown-item text-secondary" href="{% url 'inventory:inventory_list' %}"
+                ><i class="fas fa-laptop-house"></i> View Devices</a
+            >
+            </li>
+        </ul>
+    </li>

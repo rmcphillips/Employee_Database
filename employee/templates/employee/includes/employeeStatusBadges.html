@@ -1,0 +1,24 @@
+{% comment %} Active Status {% endcomment %}
+{% if employee.employee_status == "Active" or employee.employee_status == "Bank Holiday" %}
+<td class="text-center small"><span class="badge rounded-pill bg-success">{{employee.employee_status}}</span></td>
+{% endif %}
+{% comment %} Maternity Leave Status or Holidays or Induction {% endcomment %}
+{% if employee.employee_status == "Maternity Leave" or employee.employee_status == "Holidays" or employee.employee_status == "Induction" %}
+<td class="text-center small"><span class="badge rounded-pill bg-info">{{employee.employee_status}}</span></td>
+{% endif %}
+{% comment %} Long Term Absence Status or AWOL or Sick or Inactive unpaid{% endcomment %}
+{% if employee.employee_status == "LTA" or employee.employee_status == "AWOL" or employee.employee_status == "Sick" or employee.employee_status == "Inactive unpaid"%}
+<td class="text-center small"><span class="badge rounded-pill bg-warning">{{employee.employee_status}}</span></td>
+{% endif %}
+{% comment %} Leaver Status or Inactive paid {% endcomment %}
+{% if employee.employee_status == "Leaver" or employee.employee_status == "Inactive paid" %}
+<td class="text-center small"><span class="badge rounded-pill bg-danger">{{employee.employee_status}}</span></td>
+{% endif %}
+{% comment %} No Status Set {% endcomment %}
+{% if employee.employee_status == None %}
+<td class="text-center small"><span class="badge rounded-pill bg-secondary">No Status</span></td>
+{% endif %}
+
+
+
+

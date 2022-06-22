@@ -1,0 +1,43 @@
+{% load crispy_forms_tags %}
+{% comment %} Assets {% endcomment %}
+<div class="accordion m-2" id="accordionAssets">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAssets">
+            
+            <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseAssets"
+                aria-expanded="true"
+                aria-controls="collapseAssets"
+            >
+                Assets
+            </button>
+        </h2>
+    <div
+        id="collapseAssets"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingAssets"
+        data-bs-parent="#accordionAssets"
+    >
+        <div class="accordion-body">
+            <fieldset>
+                <table id="tableLeave" class="table table-hover table align-middle mt-2">
+                    <thead>
+                        <tr>
+                        <th scope="col">Device Type</th>
+                        <th scope="col">Serial Number</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% include "employee/includes/employeeAssetsList.html" %}
+                    </tbody>
+                </table>
+            </fieldset>
+        </div>
+    </div>
+</div>

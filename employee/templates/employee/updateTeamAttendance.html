@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+<div class="container mt-5 mb-5">
+    <h1 class="ms-2">Change Team Attendance</h1>
+    <div class="text-start ms-2">
+        <a href="{% url 'dashboard:dashboard' %}"><i class="fas fa-angle-left"></i> Back to Dashboard</a>
+    </div>
+    <hr>
+    <div class="container shadow-sm rounded p-4 bg-light">
+        <form action="{% url 'employee:updateTeamAttendance' %}" method="POST">
+        {% csrf_token %}
+        {{inlineForm.management_form}}
+            {% for form in inlineForm %}
+            <div class="row">
+                <div class="col-sm-12 col-lg-2 mb-2">
+                {{ form.attendance_date|as_crispy_field }}
+                </div>
+                <div class="col-sm-12 col-lg-2 mb-2">
+                {{ form.status|as_crispy_field }}
+                </div>
+                <div class="col-sm-12 col-lg-1 mb-2">
+                {{ form.hours_worked|as_crispy_field }}
+                </div>
+                <div class="col-sm-12 col-lg-2 mb-2">
+                {{ form.additional_status|as_crispy_field }}
+                </div>
+                <div class="col-sm-12 col-lg-3 mb-2">
+                {{ form.additional_hours_worked|as_crispy_field }}
+                </div>
+                <div class="col-sm-12 col-lg-2 mb-2">
+                {{ form.overtime_hours|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                {{ form.notes|as_crispy_field }}
+                </div>
+            </div>
+            {% endfor %}
+            <p class="text-center text-muted fst-italic small">Team Attendance only updates members with status ACTIVE or BANK HOLIDAY</p>
+            <div class="text-end mt-3">
+                <button type="reset" class="btn btn-sm btn-secondary"><i class="fas fa-times-circle"></i> Clear</button>
+                <button type="submit" id="btnSubmit" class="btn btn-sm btn-success"><i class="fas fa-check-circle"></i> Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="container mt-5">
+        <h3>Change Individual Attendance</h3>
+        <hr>
+        <div class="row">
+        {% for emp in attendanceList %}
+            <div class="col col-sm-4 col-lg-3 col-xl-2">
+                <a href="{% url 'employee:employeeAddAttendance' pk=emp.employee.pk %}" target="_blank">
+                    <div class="card shadow-sm mb-4">
+                    {% if emp.employee.employee_status == "Active" %}
+                        <div class="card-body text-center text-white bg-green hvr-grow"> 
+                        {% else %}
+                        <div class="card-body text-center text-white bg-red hvr-grow">
+                        {% endif %}                  
+                            <h5 class="card-title text-truncate pb-1">{{emp}}</h5>
+                            <hr class="m-1">
+                            <p class="text-center m-0">Last Attendance:</p>
+                            <p class="text-center m-0 fs-5">{{emp.attendance_date}}</p>
+                            <hr class="m-1">
+                            <p class="text-center m-0 fs-5"><strong>{{emp.employee.employee_status}}</strong></p>                         
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

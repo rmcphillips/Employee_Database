@@ -1,0 +1,32 @@
+{% load crispy_forms_tags %}
+<fieldset disabled>
+    <div class="row">
+        <div class="col-sm-12 col-lg-2">
+            {{holidays_form.carry_over_hours|as_crispy_field}}
+        </div>
+        <div class="col-sm-12 col-lg-2">
+            {{holidays_form.carry_over_expiry_date|as_crispy_field}}
+        </div>
+        <div class="col-sm-12 col-lg-4 offset-md-4 text-end">
+            <div class="btn btn-secondary p-2" style="opacity: 1;">
+                Annual Leave Allowance: <span class="badge bg-green fs-6">
+                {% if employee.payroll_type == "M" %}
+                    {% comment %} show annual leave hours as days {% endcomment %}
+                    {% widthratio annual_leave 7.5 1 %} days
+                {% else %}
+                    {{annual_leave}} hours
+                {% endif %}</span>
+            </div>   
+        </div>
+    </div>
+</fieldset>
+
+<div class="text-end">
+    <a
+        href="{% url 'employee:update_carry_over_holidays' pk=employee.pk %}"
+        class="btn btn-sm btn-warning"
+        ><i class="fas fa-edit"></i> Edit</a
+    >
+</div>
+
+

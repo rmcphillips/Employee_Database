@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block content %} {% load crispy_forms_tags %}
+<div class="container mt-5 mb-5">
+  <h1 class="ms-2">{{employee.first_name}} {{employee.last_name}} - Employee Details</h1>
+  <form action="POST">
+    {% csrf_token %} 
+    <div class="row align-items-center">
+      <div class="col text-start ms-2">
+        <a href="{% url 'employee:employeeList' %}"><i class="fas fa-angle-left"></i> Back to Employees List</a>
+      </div>
+    {% if user.department.department_name == "HR" or user.department.department_name == "Management" or user.department.department_name == "Accounts" or user.is_superuser %}
+      <div class="col text-end">
+        <a
+          href="{% url 'employee:employeeUpdate' pk=employee.pk %}"
+          class="btn btn-sm btn-warning me-2"
+          ><i class="fas fa-edit"></i> Edit Employee</a
+        >
+      </div>
+    </div>
+
+    {% comment %} Personal Details {% endcomment %}
+    {% include "../employee/includes/employeePersonalDetails.html" with isEditable="false" %}
+    
+    {% comment %} Job Details {% endcomment %}
+    {% include "../employee/includes/employeeJobDetails.html" with isEditable="false" %}
+
+    {% comment %} Attendance Details {% endcomment %}
+    {% include "../employee/includes/employeeAttendanceDetails.html" with isEditable="false" %}
+
+    {% comment %} Assets {% endcomment %}
+    {% include "../employee/includes/employeeAssets.html" %}
+
+    {% else %}
+
+    {% comment %} Personal Details {% endcomment %}
+    {% include "../employee/includes/employeePersonalDetails.html" with isEditable="false" %}
+
+    {% comment %} Attendance Details {% endcomment %}
+    {% include "../employee/includes/employeeAttendanceDetails.html" with isEditable="false" %}
+    
+    {% endif %}
+    
+  </form>
+</div>
+{% endblock content %}

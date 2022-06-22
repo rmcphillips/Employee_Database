@@ -1,0 +1,158 @@
+{% load crispy_forms_tags %}
+{% comment %} Personal Details {% endcomment %}
+    <div class="accordion m-2" id="accordionPersonalDetails">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingPersonalDetails">
+          {% if isEditable == "true" %}
+          <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsePersonalDetails"
+            aria-expanded="true"
+            aria-controls="collapsePersonalDetails"
+          >
+            Personal Details
+          </button>
+          {% else %}
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapsePersonalDetails"
+            aria-expanded="true"
+            aria-controls="collapsePersonalDetails"
+          >
+            Personal Details
+          </button>
+          {% endif %}
+        </h2>
+        {% if isEditable == "true" %}
+        <div
+          id="collapsePersonalDetails"
+          class="accordion-collapse collapse show"
+          aria-labelledby="headingPersonalDetails"
+          data-bs-parent="#accordionPersonalDetails"
+        >
+        {% else %}
+        <div
+          id="collapsePersonalDetails"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingPersonalDetails"
+          data-bs-parent="#accordionPersonalDetails"
+        >
+        {% endif %}
+          <div class="accordion-body">
+          {% if user.department.department_name == "HR" or user.department.department_name == "Management" or user.department.department_name == "Accounts" or user.is_superuser %}
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="personal-info-tab" data-bs-toggle="tab" data-bs-target="#personal-info" 
+                type="button" role="tab" aria-controls="personal-info" aria-selected="true">Personal Info</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="contact-details-tab" data-bs-toggle="tab" data-bs-target="#contact-details" 
+                type="button" role="tab" aria-controls="contact-details" aria-selected="false">Contact Details</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="emergency-contact-tab" data-bs-toggle="tab" data-bs-target="#emergency-contact" 
+                type="button" role="tab" aria-controls="emergency-contact" aria-selected="false">Emergency Contacts</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="visa-details-tab" data-bs-toggle="tab" data-bs-target="#visa-details" 
+                type="button" role="tab" aria-controls="visa-details" aria-selected="false">Visa Details</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="driving-license-details-tab" data-bs-toggle="tab" data-bs-target="#driving-license-details" 
+                type="button" role="tab" aria-controls="driving-license-details" aria-selected="false">Driving License Details</button>
+              </li>
+              {% if request.path == "/employee/create/" %}
+              
+              {% else %}
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="documents-tab" data-bs-toggle="tab" data-bs-target="#documents" 
+                type="button" role="tab" aria-controls="documents" aria-selected="false">Documents</button>
+              </li>
+              {% endif %}             
+            </ul>
+            {% else %}
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="contact-details-tab" data-bs-toggle="tab" data-bs-target="#contact-details" 
+                type="button" role="tab" aria-controls="contact-details" aria-selected="true">Contact Details</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="emergency-contact-tab" data-bs-toggle="tab" data-bs-target="#emergency-contact" 
+                type="button" role="tab" aria-controls="emergency-contact" aria-selected="false">Emergency Contacts</button>
+              </li>
+            </ul>
+            {% endif %}
+            <div class="tab-content" id="myTabContent">
+
+            {% comment %} Personal Info {% endcomment %}
+              <div class="tab-pane fade show active mt-2 p-2" id="personal-info" role="tabpanel" aria-labelledby="personal-info-tab">
+                {% if isEditable == "true" %}
+                <fieldset>
+                {% else %}
+                <fieldset disabled>
+                {% endif %}
+                  {% include "../includes/personalInfo.html" %}
+                </fieldset>
+              </div>
+
+            {% comment %} Emergency Contact Details {% endcomment %}
+              <div class="tab-pane fade mt-2 p-2" id="emergency-contact" role="tabpanel" aria-labelledby="emergency-contact-tab">
+                {% if isEditable == "true" %}
+                <fieldset>
+                {% else %}
+                <fieldset disabled>
+                {% endif %}
+                  {% include "../includes/employeeEmergencyContact.html" %}
+                </fieldset>
+              </div>
+
+            {% comment %} Contact Details {% endcomment %}
+              <div class="tab-pane fade mt-2 p-2" id="contact-details" role="tabpanel" aria-labelledby="contact-details-tab">
+                {% if isEditable == "true" %}
+                <fieldset>
+                {% else %}
+                <fieldset disabled>
+                {% endif %}
+                  {% include "../includes/employeeContactDetails.html" %}
+                </fieldset>
+              </div>
+
+            {% comment %} Visa Details {% endcomment %}
+              <div class="tab-pane fade mt-2 p-2" id="visa-details" role="tabpanel" aria-labelledby="visa-details-tab">
+                {% if isEditable == "true" %}
+                <fieldset>
+                {% else %}
+                <fieldset disabled>
+                {% endif %}
+                  {% include "../includes/employeeVisaDetails.html" %}
+                </fieldset>
+              </div>
+
+              {% comment %} Driving License Details {% endcomment %}
+              <div class="tab-pane fade mt-2 p-2" id="driving-license-details" role="tabpanel" aria-labelledby="driving-license-details-tab">
+                {% if isEditable == "true" %}
+                <fieldset>
+                {% else %}
+                <fieldset disabled>
+                {% endif %}
+                  {% include "../includes/employeeDrivingLicenseDetails.html" %}
+                </fieldset>
+              </div>
+              {% if request.path == "/employee/create/" %}
+              
+              {% else %}
+              {% comment %} Documents {% endcomment %}
+              <div class="tab-pane fade mt-2 p-2" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+                  {% include "../includes/employeeDocumentsDetails.html" %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

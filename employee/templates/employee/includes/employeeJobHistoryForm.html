@@ -1,0 +1,88 @@
+{% load crispy_forms_tags %}
+<div class="accordion m-2" id="accordionJobHistory">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingJobHistory">
+        {% if isEditable == "true" %}
+        <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseJobHistory"
+            aria-expanded="true"
+            aria-controls="collapseJobHistory"
+        >
+            Job History
+        </button>
+        {% else %}
+        <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseJobHistory"
+            aria-expanded="true"
+            aria-controls="collapseJobHistory"
+        >
+            Job History
+        </button>   
+        {% endif %}    
+        </h2>
+        {% if isEditable == "true" %}   
+        <div
+            id="collapseJobHistory"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingJobHistory"
+            data-bs-parent="#accordionJobHistory"
+        >
+        {% else %}
+        <div
+            id="collapseJobHistory"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingJobHistory"
+            data-bs-parent="#accordionJobHistory"
+        >
+        {% endif %}
+          <div class="accordion-body">
+            {% if isEditable == "true" %}
+            <fieldset>
+            {% else %}
+            <fieldset disabled>
+            {% endif %}
+            {{inlineForm.management_form}}
+            {% for form in inlineForm %}
+                {{form.id}}
+                {% if form.instance.id == None %}
+                <div class="container bg-light-blue p-3 mb-2">
+                    <h3 class="h4">New Job History</h3>
+                {% else %}
+                <div class="container bg-light p-3 mb-2">
+                    {% endif %}
+                    <div class="row mb-2">
+                        <div class="col-sm-12 col-lg-4 mb-2">
+                        {{ form.role|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.role_start|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.role_end|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-sm-12 col-lg-6 mb-2">
+                            {{ form.department|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-6 mb-2">
+                            {{ form.sub_department|as_crispy_field }}
+                        </div> 
+                    </div> 
+                    <div class="row">
+                        <div class="col">
+                        {{ form.DELETE|as_crispy_field }}
+                        </div> 
+                    </div>              
+                </div>
+            {% endfor %}
+            </fieldset>
+        </div>
+    </div>
+</div>

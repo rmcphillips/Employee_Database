@@ -1,0 +1,40 @@
+{% load static %}
+{% if messages %} 
+    {% for message in messages %}
+        <div id="alert" class="container mt-3">
+        {% comment %} Info Message {% endcomment %}
+        {% if message.level == 20 %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+        {% endif %}
+        {% comment %} Success Message {% endcomment %}
+        {% if message.level == 25 %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {% endif %}
+        {% comment %} Warning Message {% endcomment %}
+        {% if message.level == 30 %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {% endif %}
+        {% comment %} Error Message {% endcomment %}
+        {% if message.level == 40 %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {% endif %}
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endfor %} 
+{% endif %}
+
+{% if inlineForm %}
+    {% for form in inlineForm %}
+        {% for error in form.non_field_errors %}
+            <div id="alert" class="container mt-3">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{error}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endfor %} 
+    {%endfor%}
+{% endif %}
+

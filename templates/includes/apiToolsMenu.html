@@ -1,0 +1,24 @@
+{% comment %} Api Tools Navigation  {% endcomment %}
+
+    <li class="nav-item dropdown">
+    <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbarDropdownMenuLink"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+    >
+        <i class="fas fa-cogs"></i> Api Tools
+    </a>
+        <ul
+            class="dropdown-menu text-center"
+            aria-labelledby="navbarDropdownMenuLink"
+        >
+            <li>
+            <a class="dropdown-item text-secondary" href="{% url 'apiTools:dncApi' %}"
+                ><i class="fas fa-phone-slash"></i> Do Not Call</a
+            >
+            </li>
+        </ul>
+    </li>

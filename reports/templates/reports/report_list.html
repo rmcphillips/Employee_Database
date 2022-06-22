@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1 class="pl-2">Hub Reports</h1>
+        <div class="text-start">
+            <a href="{% url 'dashboard:dashboard' %}"><i class="fas fa-angle-left"></i> Back</a>
+            <hr>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+        {% for key, value in reports.items %}
+            <div class="col-lg-3 col-sm-6">
+                <a href="{% url value %}">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                            <h5 class="card-title">{{key}}</h5>
+                            <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+   

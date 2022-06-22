@@ -1,0 +1,16 @@
+{% load crispy_forms_tags %}
+{% comment %} Visa Details {% endcomment %}
+
+<div class="row mb-2">
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.visa_no|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.visa_type|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.visa_expiry|as_crispy_field }}
+  </div>
+</div>
+
+    

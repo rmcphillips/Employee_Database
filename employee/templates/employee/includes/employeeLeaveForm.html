@@ -1,0 +1,90 @@
+{% load crispy_forms_tags %}
+<div class="accordion m-2" id="accordionLeaveDetails">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingLeaveDetails">
+        {% if isEditable == "true" %}
+        <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseLeaveDetails"
+            aria-expanded="true"
+            aria-controls="collapseLeaveDetails"
+        >
+            Leave Details
+        </button>
+        {% else %}
+        <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseLeaveDetails"
+            aria-expanded="true"
+            aria-controls="collapseLeaveDetails"
+        >
+            Leave Details
+        </button>   
+        {% endif %}    
+        </h2>
+        {% if isEditable == "true" %}   
+        <div
+            id="collapseLeaveDetails"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingLeaveDetails"
+            data-bs-parent="#accordionLeaveDetails"
+        >
+        {% else %}
+        <div
+            id="collapseLeaveDetails"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingLeaveDetails"
+            data-bs-parent="#accordionLeaveDetails"
+        >
+        {% endif %}
+          <div class="accordion-body">
+            {% if isEditable == "true" %}
+            <fieldset>
+            {% else %}
+            <fieldset disabled>
+            {% endif %}
+            {{inlineForm.management_form}}
+                {% for form in inlineForm %}
+                {{form.id}}
+                {% if form.instance.id == None %}
+                <div class="container bg-light-blue p-3 mb-2">
+                    <h3 class="h4">New Leave</h3>
+                {% else %}
+                <div class="container bg-light p-3 mb-2">
+                    {% endif %}
+                    <div class="row mb-2">
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.start_date|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.end_date|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.leave_type|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                        {{ form.has_deduction|as_crispy_field }}
+                        </div> 
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                        {{ form.notes|as_crispy_field }}
+                        </div> 
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                        {{ form.DELETE|as_crispy_field }}
+                        </div> 
+                    </div>
+                </div>
+                {% endfor %}
+            </fieldset>
+        </div>
+    </div>
+</div>

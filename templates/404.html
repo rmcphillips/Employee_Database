@@ -1,0 +1,17 @@
+{% extends "base.html" %} {% load static %}
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="text-center mb-5">
+    <a href="{% url 'login' %}"> <img class="img-fluid w-75" src="{% static 'images/SalesSenseLogo.png' %}" alt="SalesSense Logo"></a>
+  </div>
+  <div class="row justify-content-center">
+    <div class="text-center">
+      <h1 class="display-1 mb-3">404</h1>
+      <h4>The requested page was not found.</h4>
+    </div>
+    <div class="text-center ms-2">
+        <a href="" onClick="window.history.back();return false;"><i class="fas fa-angle-left"></i> Back to previous page.</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}

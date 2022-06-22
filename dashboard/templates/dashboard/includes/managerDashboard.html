@@ -1,0 +1,131 @@
+{% load static %}{% block content %}
+<div class="container-fluid mt-5 mb-5 pl-5">
+    <div class="row">
+        <div class="container" id="container-dashboard-cards">
+            <div class="row justify-content-start">
+                <h3>Team Overview</h3>
+                <hr>
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-green">                   
+                            <h5 class="card-title">Active</h5>
+                            <h5 class="display-3">{{teamCount.teamActive}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-red">                   
+                            <h5 class="card-title">Inactive</h5>
+                            <h5 class="display-3">{{teamCount.teamInactive}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-gray">                   
+                            <h5 class="card-title">Total</h5>
+                            <h5 class="display-3">{{teamCount.teamTotal}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <h3>Actions</h3>
+                <hr>
+                <div class="col-4 mb-3">
+                    <a href="{% url 'employee:employeeList' %}">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">View My Team</h5>
+                                <p><i class="fas fa-users display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% if request.user.role.role_name == "Operations Manager" or request.user.role.role_name == "Senior Field Sales Manager" or request.user.role.role_name == "Account Director" %}
+                {% else %}
+                <div class="col-4 mb-3">
+                    <a href="{% url 'employee:updateTeamAttendance' %}">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">Team Attendance</h5>
+                                <p><i class="fas fa-user-clock display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+                <div class="col-4 mb-3">
+                    <a href="https://app.powerbi.com/sharedwithme" target="_blank">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">Reports</h5>
+                                <p><i class="fas fa-chart-pie display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                    {% if request.user.department.department_name == "Iberdrola" %}
+                    <div class="col-4">
+                        <a href="{% url 'iberForms:cecDisplayForm' %}">
+                        <div class="card shadow-sm mt-3">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">CEC Display Form</h5>
+                                <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% elif request.user.department.department_name == "PST Lawns" %}
+                    <div class="col-4">
+                        <a href="{% url 'pstForms:cecDisplayForm' %}">
+                        <div class="card shadow-sm mt-3">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">CEC Display Form</h5>
+                                <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% elif request.user.department.department_name == "Pinergy" %}    
+                    <div class="col-4">
+                        <a href="{% url 'pinergyForms:cecDisplayForm' %}">                                            
+                        <div class="card shadow-sm mt-3">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">CEC Display Form</h5>
+                                <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% elif request.user.department.department_name == "Bord Gais" %}    
+                    <div class="col-4">
+                        <a href="{% url 'bgeForms:form_list' %}">                                            
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">Forms</h5>
+                                <p><i class="fas fa-folder-open display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% else %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="container w-25 d-none d-xl-block">
+            <div class="row">
+                <div class="col">
+                    <div class="card border-0">
+                        <div class="card-body text-center">    
+                        <h3 class="card-title">Team Attendance Distribution</h3>              
+                            <canvas id="myChart" height="400px"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,34 @@
+{% load crispy_forms_tags %}
+    <div class="row mb-2">
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.first_name|as_crispy_field }}
+        </div>
+        <div class="col-sm-12 col-lg-4 mb-2">
+            {{ form.last_name|as_crispy_field }}
+        </div>
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.pps_no|as_crispy_field }}
+        </div>
+        </div>
+    <div class="row mb-2">
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.dob|as_crispy_field }}
+        </div>
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.gender|as_crispy_field }}
+        </div>
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.nationality|as_crispy_field }}
+        </div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-12 col-lg-6 mb-2">
+            {{ form.address|as_crispy_field }}
+        </div>
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.eircode|as_crispy_field }}
+        </div>
+        <div class="col-sm-12 col-lg-2 mb-2">
+            {{ form.county|as_crispy_field }}
+        </div>
+    </div>

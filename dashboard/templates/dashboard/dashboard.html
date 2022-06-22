@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% load static %}{% block content %} 
+{% if dashboard %}
+{% comment %} Name your new dashboard files following "<dashboard_type>Dashboard.html" {% endcomment %}
+    {% include "../dashboard/includes/"|add:dashboard|add:"Dashboard.html" %}
+{% else %}
+<div class="container text-center mt-5">
+    <h1 class="text-muted">Nothing to see at the moment.</h1>
+</div>
+{% endif %}
+{% comment %} Scripts to run the charts {% endcomment %}
+{% block extraScripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+{% if dashboard == "HR" or dashboard == "manager" %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script src="{% static 'js/charts.js'%}"></script>
+{% endif %}
+{% endblock extraScripts %}
+{% endblock content %}

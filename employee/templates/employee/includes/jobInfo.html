@@ -1,0 +1,29 @@
+{% load crispy_forms_tags %}
+<div class="row mb-2">
+    <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.role_start|as_crispy_field }}
+    </div>
+    <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.payroll_type|as_crispy_field }}
+    </div>
+    <div class="col-sm-12 col-lg-2 mb-2">
+        {{ form.health_care|as_crispy_field }}
+    </div>      
+    <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.pension|as_crispy_field }}
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-sm-12 col-lg-3 mb-2">
+    {{ form.role|as_crispy_field }}
+    </div>
+    <div class="col-sm-12 col-lg-3 mb-2">
+    {{ form.department|as_crispy_field }}
+    </div>
+    <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.sub_department|as_crispy_field }}
+    </div>        
+    <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.manager|as_crispy_field }}
+    </div>   
+</div>

@@ -1,0 +1,33 @@
+{% load static %}{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+                <h3>Actions</h3>
+                <hr>
+                 <div class="col-3 mb-3">
+                    <a href="https://app.powerbi.com/sharedwithme" target="_blank">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">Power Bi Reports</h5>
+                                <p><i class="fas fa-chart-pie display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% if request.user.department.department_name == "Training" %}    
+                <div class="col-3">
+                    <a href="{% url 'reports:leaver_report' %}">                                            
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                            <h5 class="card-title">Leaver Report</h5>
+                            <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                        </div>
+                    </div>
+                    </a>
+                </div>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

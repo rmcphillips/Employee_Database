@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% load crispy_forms_tags %} {% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+  <div class="text-center mb-5">
+    <a href="{% url 'login' %}"> <img class="img-fluid w-75" src="{% static 'images/SalesSenseLogo.png' %}" alt="SalesSense Logo"></a>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8 col-md-4 col-lg-3 col-xl-3">
+      <h1 class="display-5 mb-3">{% trans "Sign In" %}</h1>
+      <form method="POST" action="{% url 'account_login' %}">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="text-center mt-3">
+          <button class="btn btn-danger" type="submit">{% trans "Sign In" %}</button>
+        </div>
+        <div class="text-center mt-3">
+          <p class="text-center small mb-1">Don't have an account? Please <a href="{{ signup_url }}">sign up</a></p>
+          <a class="text-center small" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

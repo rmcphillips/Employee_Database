@@ -1,0 +1,37 @@
+{% load crispy_forms_tags %}
+{% comment %} Job History Details {% endcomment %}
+<table id="tableLeave" class="table table-hover table align-middle mt-2">
+    <thead>
+        <tr>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Tenure</th>
+        <th scope="col">Role</th>
+        <th scope="col">Department</th>
+        <th scope="col">Sub Department</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobHistory %}
+        <tr>
+        <td>{{job.role_start|date:"d M Y"}}</td>
+        <td>{{job.role_end|date:"d M Y"}}</td>
+        {% if job.role_end %}
+            <td>{{job.role_start|timesince:job.role_end}}</td>
+        {% else %}
+            <td>{{job.role_start|timesince}}
+        {% endif %}
+        <td>{{job.role}}</td>
+        <td>{{job.department}}</td>
+        <td>{{job.sub_department}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div class="text-end">
+    <a
+        href="{% url 'employee:employeeJobHistory' pk=employee.pk %}"
+        class="btn btn-sm btn-warning"
+        ><i class="fas fa-edit"></i> Edit</a
+    >
+</div>

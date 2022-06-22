@@ -1,0 +1,82 @@
+{% load static %}{% block content %}
+<div class="container-fluid mt-5 mb-5 pl-5">
+    <div class="row">
+        <div class="container" id="container-dashboard-cards">
+            <div class="row justify-content-start">
+                <h3>Employees Overview</h3>
+                <hr>
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-green">                   
+                            <h5 class="card-title">Active</h5>
+                            <h5 class="display-3">{{teamCount.teamActive}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-red">                   
+                            <h5 class="card-title">Inactive</h5>
+                            <h5 class="display-3">{{teamCount.teamInactive}}</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-gray">                   
+                            <h5 class="card-title">Total</h5>
+                            <h5 class="display-3">{{teamCount.teamTotal}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-5">
+                <h3>Actions</h3>
+                <hr>
+                <div class="col-4">
+                    <a href="{% url 'employee:employeeList' %}">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">View Employees</h5>
+                                <p><i class="fas fa-users display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'employee:employeeCreate' %}">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">Add Employee</h5>
+                                <p><i class="fas fa-user-plus display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'reports:report_list' %}">
+                        <div class="card shadow-sm">
+                            <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                                <h5 class="card-title">Hub Reports</h5>
+                                <p><i class="fas fa-table display-3 mt-2"></i></p>                           
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="container w-25 d-none d-xl-block">
+            <div class="row">
+                <div class="col">
+                    <div class="card border-0">
+                        <div class="card-body text-center">    
+                        <h3 class="card-title">Employees Distribution</h3>              
+                            <canvas id="myChart" height="400px"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

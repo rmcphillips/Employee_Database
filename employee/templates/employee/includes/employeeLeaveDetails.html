@@ -1,0 +1,44 @@
+{% load crispy_forms_tags %}
+{% comment %} Leave Details {% endcomment %}
+<table id="tableLeave" class="table table-hover table align-middle mt-2">
+    <thead>
+        <tr>
+        <th scope="col">Start Date</th>
+        <th scope="col">End Date</th>
+        <th scope="col">Leave Type</th>
+        <th scope="col">Clawback/Deductions</th>
+        <th scope="col">Additional Notes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for leave in leaveList %}
+        <tr>
+            <td>{{leave.start_date|date:"d M Y"}}</td>
+
+            {% if leave.end_date %}
+                <td>{{leave.end_date|date:"d M Y"}}</td>
+            {% else %}
+                <td>-</td>
+            {% endif %}
+
+            <td>{{leave.leave_type}}</td>
+            
+            {% if leave.has_deduction == False %}
+                <td>No</td>
+            {% else %}
+                <td>Yes</td>
+            {% endif %}
+
+            <td class="text-truncate">{{leave.notes}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="text-end">
+    <a
+        href="{% url 'employee:employeeAddLeave' pk=employee.pk %}"
+        class="btn btn-sm btn-warning"
+        ><i class="fas fa-edit"></i> Edit</a
+    >
+</div>

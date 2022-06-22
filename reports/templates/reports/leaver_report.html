@@ -1,0 +1,36 @@
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1 class="pl-2">Leaver Report</h1>
+        <div class="text-start">
+            <a href="{% url 'reports:report_list' %}"><i class="fas fa-angle-left"></i> Back</a>
+            <hr>
+        </div>
+    </div>
+    <div class="container shadow-sm rounded p-4 bg-light">
+        <form action="{% url 'reports:draw_leaver_report' %}" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-2 col-sm-12">
+                    {{form.start_date|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.end_date|as_crispy_field}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-sm-12">
+                    {{form.employee|as_crispy_field}}
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    {{form.department|as_crispy_field}}
+                </div>
+            </div>
+            <div class="text-end">
+                <button type="submit" id="btnSubmit" class="btn btn-sm btn-success"><i class="fas fa-check-circle"></i> Generate Report</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

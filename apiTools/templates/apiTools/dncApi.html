@@ -1,0 +1,68 @@
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+{% block extraCss %}
+<link rel="stylesheet" href="{% static 'apiTools/apiTools.css' %}">
+{% endblock extraCss %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1 class="pl-2">Do Not Call - API</h1>
+        <p>Delete customers from an active campaign</p>
+    </div>
+    <hr>
+    <div class="container shadow-sm rounded p-4 bg-light">
+        <form action="{% url 'apiTools:dncApi' %}" method="POST">
+        {% csrf_token %}
+            <div class="row">
+                <div class="col-4">
+                    {{form.tenant|as_crispy_field}}
+                </div>
+                <div class="col-4">
+                    {{form.campaignID|as_crispy_field}}
+                </div>
+                {% if responseMessage %}
+                <div class="col-4 d-flex align-items-center mt-3 justify-content-end">
+                    <a href="{% url 'apiTools:dncApiExportCSV' %}"class="btn btn-sm btn-warning m-1"><i class="fas fa-file-csv"></i> Export .CSV</a>
+                    <a href="{% url 'apiTools:dncApiExportXLS' %}"class="btn btn-sm btn-warning m-1"><i class="far fa-file-excel"></i> Export .XLS</a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{form.customerContactNumber|as_crispy_field}}
+                </div>
+            </div>
+            <div class="text-end mb-1 me-1">
+
+            </div>
+            <div class="text-end">
+                <a href="{% url 'apiTools:dncApi' %}"class="btn btn-sm btn-secondary"><i class="fas fa-times-circle"></i> Clear</a>
+                <button type="submit" id="btnSubmit" class="btn btn-sm btn-success"><i class="fas fa-check-circle"></i> Submit</button>
+            </div>
+        </form>
+    </div>
+    {% if responseMessage %}
+    <div class="card mt-4 text-center shadow-sm">
+        <div class="card-header">
+            Query Result:
+        </div>
+        <div class="card-body">
+            <h4 class="text-center"></h4>        
+        {% if responseMessage|length > 8 %}
+            <ul class="text-center p-0 grid-list">
+        {% else %}
+            <ul class="text-center p-0">
+        {% endif %}
+            {% for message in responseMessage %}
+                {% if message.status == 200 or message.status == 204 %}
+                    <li class="list-group-item list-group-item-success m-1">Status {{message.status}} - {{message.message}}</li>
+                {% else %}
+                    <li class="list-group-item list-group-item-danger m-1">Status {{message.status}} - {{message.message}}</li>
+                {% endif %}
+            {% endfor %}
+            </ul>
+            
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock  %}

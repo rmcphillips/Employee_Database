@@ -1,0 +1,22 @@
+{% load crispy_forms_tags %}
+{% comment %} Emergency Contact {% endcomment %}
+<div class="row mb-2">
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.kin_first_name|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-4 mb-2">
+    {{ form.kin_last_name|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-6 mb-2">
+    {{ form.kin_relationship|as_crispy_field }}
+  </div>
+</div>
+<div class="row mb-2">
+  <div class="col-sm-12 col-lg-2 mb-2">
+    {{ form.kin_phone|as_crispy_field }}
+  </div>
+  <div class="col-sm-12 col-lg-4 mb-2">
+    {{ form.kin_email|as_crispy_field }}
+  </div>
+</div>
+        

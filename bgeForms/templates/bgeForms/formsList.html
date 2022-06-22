@@ -1,0 +1,48 @@
+{% extends "base.html" %}{% load static %}{% load crispy_forms_tags %}
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <h1 class="pl-2">Forms</h1>
+        <div class="text-start">
+            <a href="{% url 'dashboard:dashboard' %}"><i class="fas fa-angle-left"></i> Back to Dashboard</a>
+            <hr>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+        {% comment %} Load FTE Forms {% endcomment %}
+        {% if request.user.role.role_name == "Regional Field Sales Manager" or request.user.role.role_name == "Account Director" or request.user.role.role_name == "Senior Field Sales Manager" %}
+            <div class="col-lg-3 col-sm-6">
+                <a href="{% url 'bgeForms:fte_form' %}">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                            <h5 class="card-title">FTE Form</h5>
+                            <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% comment %} Load Order Processing Executive Forms {% endcomment %}
+        {% elif request.user.role.role_name == "Order Processing Executive" %}
+            <div class="col-lg-3 col-sm-6">
+                <a href="{% url 'bgeForms:processed_paper_sales_form' %}">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-end text-white bg-gray hvr-grow">                   
+                            <h5 class="card-title">Processed Paper Sales Form</h5>
+                            <p><i class="fas fa-file-alt display-3 mt-2"></i></p>                           
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% else %}
+            <div class="text-center">
+                <strong><p>Sorry, nothing to see here.</p></strong>
+                <p>You have no forms at the momnent.</p>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+   

@@ -1,0 +1,93 @@
+{% load crispy_forms_tags %}{% load static %}
+<div class="accordion m-2" id="accordionAttendanceDetails">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="headingAttendanceDetails">
+        {% if isEditable == "true" %}
+        <button
+            class="accordion-button"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseAttendanceDetails"
+            aria-expanded="true"
+            aria-controls="collapseAttendanceDetails"
+        >
+            Attendance Details
+        </button>
+        {% else %}
+        <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#collapseAttendanceDetails"
+            aria-expanded="true"
+            aria-controls="collapseAttendanceDetails"
+        >
+            Attendance Details
+        </button>   
+        {% endif %}    
+        </h2>
+        {% if isEditable == "true" %}   
+        <div
+            id="collapseAttendanceDetails"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingAttendanceDetails"
+            data-bs-parent="#accordionAttendanceDetails"
+        >
+        {% else %}
+        <div
+            id="collapseAttendanceDetails"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingAttendanceDetails"
+            data-bs-parent="#accordionAttendanceDetails"
+        >
+        {% endif %}
+          <div class="accordion-body">
+            {% if isEditable == "true" %}
+            <fieldset>
+            {% else %}
+            <fieldset disabled>
+            {% endif %}
+            {{inlineForm.management_form}}
+            {% comment %} This needs to be tested! {% endcomment %}
+                {% for form in inlineForm %}
+                {{form.id}}
+                {% if form.instance.id == None %}
+                <div class="container bg-light-blue p-3 mb-2">
+                    <h3 class="h4">New Attendance</h3>
+                {% else %}
+                <div class="container bg-light p-3 mb-2">
+                    {% endif %}
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.attendance_date|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.status|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-1 mb-2">
+                        {{ form.hours_worked|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.additional_status|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-3 mb-2">
+                        {{ form.additional_hours_worked|as_crispy_field }}
+                        </div>
+                        <div class="col-sm-12 col-lg-2 mb-2">
+                        {{ form.overtime_hours|as_crispy_field }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                        {{ form.notes|as_crispy_field }}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </fieldset>
+        </div>
+    </div>
+</div>
+{% block extraScripts %}
+<script src="{% static 'employee/scripts.js'%}"></script>
+{% endblock extraScripts%}
